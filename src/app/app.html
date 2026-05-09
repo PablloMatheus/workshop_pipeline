@@ -1,0 +1,16 @@
+<div style="text-align: center; font-family: Arial, sans-serif;">
+  <h1>{{ title }}</h1>
+
+  <h2 *ngIf="!winner">Vez do jogador: {{ turn }}</h2>
+  <h2 *ngIf="winner" style="color: green;">Vencedor: {{ winner }}!</h2>
+
+  <div class="board">
+    <div *ngFor="let cell of cells; let i = index" class="cell" (click)="makeMove(i)">
+      {{ cell }}
+    </div>
+  </div>
+
+  <button (click)="reset()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">
+    Reiniciar Jogo
+  </button>
+</div>
