@@ -1,16 +1,39 @@
-<div style="text-align: center; font-family: Arial, sans-serif;">
+<div class="container">
   <h1>{{ title }}</h1>
 
-  <h2 *ngIf="!winner">Vez do jogador: {{ turn }}</h2>
-  <h2 *ngIf="winner" style="color: green;">Vencedor: {{ winner }}!</h2>
+  <div class="scoreboard">
+    <div class="score-card" [class.active]="turn === 'X' && !winner">
+      <span>Jogador X</span>
+      <strong>{{ score.x }}</strong>
+    </div>
+    <div class="score-card" [class.active]="turn === 'O' && !winner">
+      <span>Jogador O</span>
+      <strong>{{ score.o }}</strong>
+    </div>
+  </div>
+
+  <h2 *ngIf="winner" class="status-msg">
+    {{ winner === 'Empate' ? 'Deu Velha!' : '🎉 Vencedor: ' + winner }}
+  </h2>
 
   <div class="board">
-    <div *ngFor="let cell of cells; let i = index" class="cell" (click)="makeMove(i)">
+    <div *ngFor="let cell of cells; let i = index" 
+         class="cell" 
+         [class.x-color]="cell === 'X'"
+         [class.o-color]="cell === 'O'"
+         (click)="makeMove(i)">
       {{ cell }}
     </div>
   </div>
 
-  <button (click)="reset()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">
-    Reiniciar Jogo
-  </button>
+  <div class="controls">
+    <button (click)="reset()" class="btn-reset">Nova Rodada</button>
+  </div>
+
+  <div class="history-panel" *ngIf="history.length > 0">
+    <h3>Histórico da Partida</h3>
+    <ul>
+      <li *ngFor="let step of history">{{ step }}</li>
+    </ul>
+  </div>
 </div>
