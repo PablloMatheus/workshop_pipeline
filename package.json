@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:s3-angular-project": "node dist/s3-angular-project/server/server.mjs"
+    "serve:ssr:s3-angular-project": "node dist/workshop/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
